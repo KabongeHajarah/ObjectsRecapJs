@@ -28,8 +28,9 @@ dog.getDogInfo=function() {
 console.log(dog.getDogInfo());
 
 
-//Exercises: Level 2
 
+
+//Exercises: Level 2
 
 const users = {
     Alex: {
@@ -168,6 +169,9 @@ const countries = {
   }
   
 // Exercises: Level 3
+
+
+
 // Create an object literal called personAccount. It has firstName,
 //  lastName, incomes, expenses properties
 //  and it has totalIncome, totalExpense, accountInfo,addIncome, 
