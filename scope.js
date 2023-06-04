@@ -67,3 +67,24 @@ function scope(){
     const gravity=10
     console.log(gravity);
  }
+
+ //constructor functions
+ 
+ function Person(firstName, lastName, age) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+  
+    this.getFullName = function() {
+      return this.firstName + ' ' + this.lastName;
+    };
+  }
+
+  //to create new objects from the constructor function
+  const person1 = new Person('John', 'Doe', 25);
+const person2 = new Person('Jane', 'Smith', 30);
+
+console.log(person1.firstName); // Output: "John"
+console.log(person2.getFullName()); // Output: "Jane Smith"
+
+  

@@ -177,7 +177,43 @@ const countries = {
 //  and it has totalIncome, totalExpense, accountInfo,addIncome, 
 // addExpense and accountBalance methods. Incomes is a set of incomes 
 // and its description and expenses is a set of incomes and its description.
-
+const personAccount={
+    firstName: 'John',
+    lastName: 'Doe',
+    incomes: [],
+    expenses: [],
+    totalIncome: function() {
+        let total = 0;
+        for (let income of this.incomes) {
+          total += income.amount;
+        }
+        return total;
+      },
+      totalExpense: function() {
+        let total = 0;
+        for (let expense of this.expenses) {
+          total += expense.amount;
+        }
+        return total;
+      },
+      accountInfo: function() {
+        return `Account Holder: ${this.firstName} ${this.lastName}\nTotal Income: ${this.totalIncome()}\nTotal Expense: ${this.totalExpense()}`;
+      },
+      addIncome: function(description, amount) {
+        this.incomes.push({ description, amount });
+      },
+      addExpense: function(description, amount) {
+        this.expenses.push({ description, amount });
+      },
+      accountBalance: function() {
+        return this.totalIncome() - this.totalExpense();
+      }
+};
+personAccount.addIncome('Salary', 3000);
+personAccount.addExpense('Rent', 1000);
+personAccount.addExpense('Groceries', 200);
+console.log(personAccount.accountInfo());
+console.log('Account Balance:', personAccount.accountBalance());
 
 
 
@@ -225,7 +261,7 @@ const countries = {
     }
     ];
 
-    const products = [
+const products = [
   {
     _id: 'eedfcf',
     name: 'mobile phone',
@@ -255,11 +291,77 @@ const countries = {
   }
 ]
 // Imagine you are getting the above users collection from a MongoDB database.
-//  a. Create a function called signUp which allows user to add to the collection. If user exists, inform the user that he has already an account.
+//  a. Create a function called signUp which allows user to add to the collection.
+//  If user exists, inform the user that he has already an account.
+function signUp(newUser) {
+    // Check if the email or username already exists in the collection
+    const existingUser = usersNew.find(user => user.email === newUser.email || user.username === newUser.username);
+    
+    if (existingUser) {
+      return 'You already have an account.';
+    } else {
+      usersNew.push(newUser);
+      return 'Sign up successful.';
+    }
+  }
+  
+  // Example usage:
+  const newUser = {
+    _id: 'xyz123',
+    username: 'John',
+    email: 'john@john.com',
+    password: '123456',
+    createdAt: '08/01/2020 10:30 AM',
+    isLoggedIn: false
+  };
+  
+  console.log(signUp(newUser)); // Output: 'Sign up successful.'
+  
+  const existingUser = {
+    _id: 'abc123',
+    username: 'Alex',
+    email: 'alex@alex.com',
+    password: 'password',
+    createdAt: '08/01/2020 11:00 AM',
+    isLoggedIn: false
+  };
+  
+  console.log(signUp(existingUser)); // Output: 'You already have an account.'
+  
 // b. Create a function called signIn which allows user to sign in to the application
 
+function signIn(email, password) {
+    // Find the user with the matching email
+    const user = usersNew.find(user => user.email === email);
+  
+    if (user) {
+      // Check if the password matches
+      if (user.password === password) {
+        user.isLoggedIn = true;
+        return 'Sign in successful.';
+      } else {
+        return 'Incorrect password.';
+      }
+    } else {
+      return 'User not found.';
+    }
+  }
+  
+  // Example usage:
+  console.log(signIn('alex@alex.com', '123123')); // Output: 'Sign in successful.'
+  console.log(signIn('asab@asab.com', '123456')); // Output: 'Sign in successful.'
+  console.log(signIn('martha@martha.com', '123222')); // Output: 'Sign in successful.'
+  console.log(signIn('john@john.com', 'password')); // Output: 'Incorrect password.'
+  console.log(signIn('unknown@user.com', 'password')); // Output: 'User not found.'
+  
+
+
+
 // The products array has three elements and each of them has six properties. 
-// a. Create a function called rateProduct which rates the product 
+// a. Create a function called rateProduct which rates the product
+function rateProduct() {
+    
+}
 // b. Create a function called averageRating which calculate the average rating of a product
 
 // Create a function called likeProduct. This function will helps to like to the product if it is not liked and remove like if it was liked.
